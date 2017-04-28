@@ -1,0 +1,93 @@
+﻿body {
+}
+.div-border {
+    width: 1158px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+}
+.items-list {
+    padding: 5px 10px;
+    position: relative;
+    z-index: 1;
+}
+.items {
+    line-height: 26px;
+    padding: 4px 10px;
+    border-bottom: 1px dashed #d8d8d8;
+    color:white;
+}
+.items .item-title {
+    display: inline-block;
+    color: #fff;
+    margin-right: 15px;
+    vertical-align: top;
+}
+.items a:link, .items a:visited {
+    color: #fff;
+}
+.items a {
+    margin-right: 20px;
+    display: inline-block;
+}
+a {
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+.sub-items {
+    border-radius: 3px;
+    border: 1px solid #d8d8d8;
+    margin: 4px 0 5px 35px;
+    padding: 3px 10px;
+    line-height: 14px;
+}
+.items span .selected-item, .items .sub-items .selected-item {
+    color: #ffbe00;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.items a{
+    color: #fff;
+}
+.sub-items a {
+    display: -moz-inline-stack;
+    display: inline-block;
+    color: #fff;
+    margin: 0 20px 0 0;
+    height: 25px;
+    line-height: 25px;
+}
+.items .sub-items .sub-letter-item {
+    color: #fff;
+    margin-right: 3px;
+}
+.sub-items a {
+    display: -moz-inline-stack;
+    display: inline-block;
+    color: #fff;
+    margin: 0 20px 0 0;
+    height: 25px;
+    line-height: 25px;
+}
+.items .elems-l {
+    width: 1000px;
+    text-align:left;
+    _width: 1078px;
+    display: inline-block;
+}
+.search_bottom {
+    padding-left: 0;
+    position: relative;
+    height: 45px;
+    padding-top: 0;
+    margin-right: 0;
+    clear: both;
+}
+
+
+
+
+

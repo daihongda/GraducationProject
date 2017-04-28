@@ -1,0 +1,338 @@
+﻿@{
+    ViewBag.Title = "ReportBySchool";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Content/Assests/js/jquery-1.10.2.js"></script>
+<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Scripts/modules/exporting.js"></script>
+<script src="~/Scripts/highcharts-zh_CN.js"></script>
+<style>
+     ul, li {
+        margin: 0;
+        padding: 0;
+    }
+    .filter-box {
+        display: none;
+        margin-bottom: 10px;
+    }
+
+    .filter-option {
+        background-color: white;
+        border: 1px solid #364150;
+        box-shadow: 0 1px 5px #ccc;
+        padding: 10px 10px 0;
+    }
+    div.search_suggest li{
+          height: 24px;
+            overflow: hidden;
+            padding-left: 3px;
+            line-height: 24px;
+            background: #FFFFFF;
+            cursor: default;
+    }
+     div.search_suggest ul{
+         position:absolute;
+         padding:0px;
+         margin:0px;
+     }
+    div.search_suggest li.hover {
+        background: #DDDDDD;
+    }
+    div.search_suggest{
+        position:relative;
+
+        z-index: 999;
+
+        display: none;
+    }
+</style>
+
+<h2>
+    统计分析<span id="ErrMsg" class="text-danger main-error"></span>
+</h2>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="filter-option filter-box" id="edit-box" style="display:block">
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">高校</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="school" placeholder="请输入高校名称" />
+                                <div class="search_suggest" id="searchList">
+                                    <ul class=" form-control"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">新闻分类</label>
+                            <div class="col-sm-8">
+                                <select id="Area" class="form-control ">
+                                    <option value="">请选择新闻分类</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">时间跨度</label>
+                            <div class="col-sm-8">
+                                <select id="TimeSpan" class="form-control ">
+                                    <option value="">请选择时间跨度</option>
+                                    <option value="1">天</option>
+                                    <option value="7">周</option>
+                                    <option value="28">月</option>
+                                    <option value="365">年</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-black" onclick="clearC()">清空</a>
+                                    <a href="#" class="btn btn-black" onclick="getChart()">统计</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="container" style="min-width:400px;height:400px">
+
+        </div>
+        <div id="LogData">
+        </div>
+    </div>
+</div>
+
+<script>
+    /**
+* Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
+**/
+    function getChart() {
+        var areaId = $("#Area").val();
+        var timeSpan = $("#TimeSpan").val();
+
+        $.post("/Statistics/GetChartData", { areaId: areaId, timeSpan: timeSpan }, function (data) {
+            var x = [];
+            var y1 = [];
+            var y2 = [];
+            var y3 = [];
+            for (var i = 0; i < data.data.length; i++) {
+                x.push(data.data[i].x1);
+                y1.push(data.data[i].y1);
+                y2.push(data.data[i].y2);
+                y3.push(data.data[i].y3);
+            }
+            var chart = new Highcharts.Chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '高校新闻综合统计'
+                },
+                subtitle: {
+                    text: '数据来源: 网络'
+                },
+                xAxis: {
+                    categories: x,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '个'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 条</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '新闻总数',
+                    data: y1
+                }, {
+                    name: '评论总数',
+                    data: y2
+                }, {
+                    name: '查看总数',
+                    data: y3
+                }]
+            });
+        });
+
+    }
+    $("#Province").change(function () {
+        getAreas();
+    });
+    function getAreas() {
+        var provinceId = $("#Province").val();
+        $.post("/Statistics/GetAreas", { provinceId: provinceId }, function (data1) {
+            var select = "<option value=-1>请选择市区</option>";
+            var i = 0;
+            var data = data1.data;
+            for (i = 0; i < data.length; i++) {
+                select += "<option value=" + data[i].Id + ">" + data[i].Name + "</option>";
+            }
+            $("#Area").html(select);
+        })
+    }
+
+    //实现搜索框的下拉列表
+    function getSearchList(searchFuc) {
+        var input = $('#school');
+        var suggestWrap = $('#searchList');
+        var key = "";
+        var init = function () {
+            input.bind('keyup', sendKeyWord);
+            input.bind('blur', function () { setTimeout(hideSuggest, 100); })
+        }
+        var hideSuggest = function () {
+            suggestWrap.hide();
+        }
+
+        //发送请求，根据关键字到后台查询
+        var sendKeyWord = function (event) {
+
+            //键盘选择下拉项
+            if (suggestWrap.css('display') == 'block' && event.keyCode == 38 || event.keyCode == 40) {
+                var current = suggestWrap.find('li.hover');
+                if (event.keyCode == 38) {
+                    if (current.length > 0) {
+                        var prevLi = current.removeClass('hover').prev();
+                        if (prevLi.length > 0) {
+                            prevLi.addClass('hover');
+                            input.val(prevLi.html());
+                        }
+                    } else {
+                        var last = suggestWrap.find('li:last');
+                        last.addClass('hover');
+                        input.val(last.html());
+                    }
+
+                } else if (event.keyCode == 40) {
+                    if (current.length > 0) {
+                        var nextLi = current.removeClass('hover').next();
+                        if (nextLi.length > 0) {
+                            nextLi.addClass('hover');
+                            input.val(nextLi.html());
+                        }
+                    } else {
+                        var first = suggestWrap.find('li:first');
+                        first.addClass('hover');
+                        input.val(first.html());
+                    }
+                }
+
+                //输入字符
+            } else {
+                var valText = $.trim(input.val());
+                if (valText == '' || valText == key) {
+                    return;
+                }
+                searchFuc(valText);
+                key = valText;
+            }
+
+        }
+        //请求返回后，执行数据展示
+        this.dataDisplay = function (data) {
+            if (data.length <= 0) {
+                suggestWrap.hide();
+                return;
+            }
+
+            //往搜索框下拉建议显示栏中添加条目并显示
+            var li;
+            var tmpFrag = document.createDocumentFragment();
+            suggestWrap.find('ul').html('');
+            for (var i = 0; i < data.length; i++) {
+                li = document.createElement('LI');
+                li.innerHTML = data[i];
+                tmpFrag.appendChild(li);
+            }
+            suggestWrap.find('ul').append(tmpFrag);
+            suggestWrap.show();
+
+            //为下拉选项绑定鼠标事件
+            suggestWrap.find('li').hover(function () {
+                suggestWrap.find('li').removeClass('hover');
+                $(this).addClass('hover');
+
+            }, function () {
+                $(this).removeClass('hover');
+            }).bind('click', function () {
+                input.val(this.innerHTML);
+                suggestWrap.hide();
+            });
+        }
+        init();
+    };
+
+    //实例化输入提示的JS,参数为进行查询操作时要调用的函数名
+    var searchSuggest = new getSearchList(sendKeyWordToBack);
+
+    //这是一个模似函数，实现向后台发送ajax查询请求，并返回一个查询结果数据，传递给前台的JS,再由前台JS来展示数据。本函数由程序员进行修改实现查询的请求
+    //参数为一个字符串，是搜索输入框中当前的内容
+    function sendKeyWordToBack(keyword) {
+        /*  var obj = {
+                 "keyword" : keyword
+              };
+              $.ajax({
+                        type: "POST",
+                        url: "${ctx}/front/suqiu2/search/prompt-keyword.action",
+                        async:false,
+                        data: obj,
+                        dataType: "json",
+                        success: function(data){
+                          //var json = eval("("+data+")");
+                          var key=data.split(",");
+                          var aData = [];
+                          for(var i=0;i<key.length;i++){
+                                 //以下为根据输入返回搜索结果的模拟效果代码,实际数据由后台返回
+                             if(key[i]!=""){
+                                   aData.push(key[i]);
+                             }
+                          }
+                         //将返回的数据传递给实现搜索输入框的输入提示js类
+                          searchSuggest.dataDisplay(aData);
+                        }
+          });      */
+
+        //以下为根据输入返回搜索结果的模拟效果代码,实际数据由后台返回
+        var aData = [];
+        aData.push(keyword + '返回数据1');
+        aData.push(keyword + '返回数据2');
+        aData.push(keyword + '不是有的人天生吃素的');
+        aData.push(keyword + '不是有的人天生吃素的');
+        aData.push(keyword + '2012是真的');
+        aData.push(keyword + '2012是假的');
+        //将返回的数据传递给实现搜索输入框的输入提示js类
+        searchSuggest.dataDisplay(aData);
+
+    }
+
+
+</script>
+
+

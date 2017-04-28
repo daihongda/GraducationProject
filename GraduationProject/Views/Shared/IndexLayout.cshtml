@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Home</title>
+    <!-- Bootstrap core ~/Content/Css -->
+    <link href="~/Content/Css/bootstrap.css" rel="stylesheet">
+    <!-- 菜单栏 ~/Content/Css -->
+    <link href="~/Content/Js/dl-menu/component.css" rel="stylesheet">
+    <!-- 滚动条 ~/Content/Css -->
+    <link href="~/Content/Css/slick.css" rel="stylesheet">
+    <link href="~/Content/Css/slick-theme.css" rel="stylesheet">
+    <!-- 图标 ~/Content/Css -->
+    <link rel="stylesheet" href="~/Content/Assests/font-awesome/css/font-awesome.min.css">
+    <!-- 背景图片 ~/Content/Css -->
+    <link href="~/Content/Css/prettyPhoto.css" rel="stylesheet">
+    <!-- 排版 ~/Content/Css -->
+    <link href="~/Content/Css/typography.css" rel="stylesheet">
+    <!-- 图标样式 ~/Content/Css -->
+    <link href="~/Content/Css/widget.css" rel="stylesheet">
+    <!-- Shortcodes ~/Content/Css -->
+    <link href="~/Content/Css/shortcodes.css" rel="stylesheet">
+    <!-- 主样式 ~/Content/Css -->
+    <link href="~/Content/Css/style.css" rel="stylesheet">
+    <!-- 颜色 ~/Content/Css -->
+    <link href="~/Content/Css/color.css" rel="stylesheet">
+    <!-- Responsive ~/Content/Css -->
+    <link href="~/Content/Css/responsive.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="kode_wrapper">
+        <!--Header 2 Wrap Start-->
+        <header class="kode_header_2">
+            <!--Header 2 Top Bar Start-->
+            <div class="kf_top_bar">
+                <div class="container">
+                    <div class="pull-left">
+                        <ul class="kf_social2">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="kf_right_dec">
+                        <ul class="kf_topdec">
+                            <li>
+                                <div class="kf_lung">
+                                    @{
+                                        var s = GeneralCommon.getCurrentUserName() == null ? "尊敬的游客" : GeneralCommon.getCurrentUserName();
+                                        var b = GeneralCommon.getCurrentUserName() == null ? "block" : "none";
+                                    }
+                                    <span>当前用户 :@s
+                                   
+                                    </span>
+                                    <div class="dropdown">
+                                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                            <li>BRL</li>
+                                            <li>EUR</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="kf_user" style="display:@b">
+                            <li><a href="#"><i class="fa fa-lock"></i>注册</a></li>
+                            <li><a href="#">登录</a></li>
+                        </ul>
+                        <a href="#" data-toggle="modal" data-target="#search" class="kode_search"><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!--Header 2 Top Bar End-->
+            <div class="container">
+                <!--Logo Bar Start-->
+                <div class="kode_logo_bar">
+                    <!--Logo Start-->
+                    <div class="logo">
+                        <a href="#">
+                            <img src="images/logo.png" alt="">
+                        </a>
+                    </div>
+                    <!--Logo Start-->
+                    <!--Navigation Wrap Start-->
+                    <div class="kode_navigation">
+                        <!--Navigation Start-->
+                        <ul class="nav">
+                            <li><a href="/Home/Index">主页</a></li>
+                            <li><a href="#">热门</a></li>
+                            <li><a href="/Home/Schools">高校预览</a></li>
+                            <li><a href="/Home/SchoolNews">新闻分类</a></li>
+                        </ul>
+                        <!--DL Menu Start-->
+                        <div id="kode-responsive-navigation" class="dl-menuwrapper">
+                            <button class="dl-trigger">Open Menu</button>
+                            <ul class="dl-menu">
+                                <li><a href="index.html">home</a></li>
+                                <li><a href="blog.html">blog</a></li>
+                                <li><a href="shop.html">shop</a></li>
+                                <li><a href="team-overview.html">team overview</a></li>
+                                <li><a href="team-schedule.html">team schedule</a></li>
+                                <li><a href="contactus.html">contact us</a></li>
+                                <li><a href="widget.html">widget</a></li>
+                            </ul>
+                        </div>
+                        <!--DL Menu END-->
+                        <!--Navigation End-->
+
+                    </div>
+                    <!--Navigation Wrap End-->
+                </div>
+                <!--Logo Bar End-->
+            </div>
+        </header>
+        @RenderBody()
+        <!--ticker Wrap Start-->
+        <div class="kf_ticker-wrap twitter_ticker">
+            <div class="container">
+                <div class="kf_ticker">
+                    <span><i class="fa fa-twitter"></i></span>
+                    <div class="kf_ticker_slider">
+                        <ul class="ticker">
+                            <li><p>Check out 'Be Clean - Cleaning Company, Maid Service & Laundry WordPress Theme' by kodeforest #themeforest <a href="#">https://t.co/nifHgDnXes</a></p></li>
+                            <li><p>Laundry WordPress Theme' by kodeforest #themeforest <a href="#">https://t.co/nifHgDnXes</a></p></li>
+                            <li><p>Check out 'Be Clean WordPress Theme' by kodeforest #themeforest <a href="#">https://t.co/nifHgDnXes</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--ticker Wrap End-->
+        <!--Copy Right Wrap Start-->
+        <div class="copy_right3">
+            <div class="container">
+                <p>Copyright &copy; 2017.Company name All rights reserved.</p>
+                <ul class="kf_social3">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <!--Copy Right Wrap End-->
+    </div>
+    <script src="~/Content/Js/jquery.js"></script>
+    <!--Bootstrap core JavaScript-->
+    <script src="~/Content/Js/bootstrap.js"></script>
+    <!--Slick Slider JavaScript-->
+    <script src="~/Content/Js/slick.min.js"></script>
+    <!--Number Count (Waypoints) JavaScript-->
+    <script src="~/Content/Js/downCount.js"></script>
+    <script src="~/Content/Js/waypoints-min.js"></script>
+    <!--Dl Menu Script-->
+    <script src="~/Content/Js/dl-menu/modernizr.custom.js"></script>
+    <script src="~/Content/Js/dl-menu/jquery.dlmenu.js"></script>
+    <!--Progress bar JavaScript-->
+    <script src="~/Content/Js/jprogress.js" type="text/javascript"></script>
+    <!--Pretty Photo JavaScript-->
+    <script src="~/Content/Js/jquery.prettyPhoto.js"></script>
+    <!--Custom JavaScript-->
+    <script src="~/Scripts/jquery.tmpl.min.js"></script>
+</body>
+</html>

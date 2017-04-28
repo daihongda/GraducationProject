@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "ReportBySchool";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="/Content/Assests/js/jquery-1.10.2.js"></script>
+<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Scripts/modules/exporting.js"></script>
+<script src="~/Scripts/highcharts-zh_CN.js"></script>
+<style>
+    .filter-box {
+        display: none;
+        margin-bottom: 10px;
+    }
+
+    .filter-option {
+        background-color: white;
+        border: 1px solid #364150;
+        box-shadow: 0 1px 5px #ccc;
+        padding: 10px 10px 0;
+    }
+</style>
+
+<h2>
+    统计分析<span id="ErrMsg" class="text-danger main-error"></span>
+</h2>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="filter-option filter-box" id="edit-box" style="display:block">
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">省份</label>
+                            <div class="col-sm-8">
+                                @Html.DropDownList("Provinces", null, htmlAttributes: new { @class = "form-control", @id = "Province" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">市区</label>
+                            <div class="col-sm-8">
+                                <select id="Area"  class="form-control ">
+                                    <option value="">请选择市区</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">时间段</label>
+                            <div class="col-sm-8">
+                                <select id="TimeSpan"  class="form-control ">
+                                    <option value="">请选择时间段</option>
+                                    <option value="0">当天</option>
+                                    <option value="7">近一周</option>
+                                    <option value="28">近一个月</option>
+                                    <option value="365">近一年</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-black" onclick="clearC()">清空</a>
+                                    <a href="#" class="btn btn-black" onclick="getChart()">统计</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="container" style="min-width:400px;height:400px">
+
+        </div>
+        <div id="LogData">
+        </div>
+    </div>
+</div>
+
+<script>
+    /**
+* Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
+**/
+    function getChart() {
+        var areaId = $("#Area").val();
+        var timeSpan = $("#TimeSpan").val();
+
+        $.post("/Statistics/GetChartData", { areaId: areaId, timeSpan: timeSpan }, function (data) {
+            var x = [];
+            var y1 = [];
+            var y2 = [];
+            var y3 = [];
+            for (var i = 0; i < data.data.length; i++) {
+                x.push(data.data[i].x1);
+                y1.push(data.data[i].y1);
+                y2.push(data.data[i].y2);
+                y3.push(data.data[i].y3);
+            }
+            var chart = new Highcharts.Chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '高校新闻综合统计'
+                },
+                subtitle: {
+                    text: '数据来源: 网络'
+                },
+                xAxis: {
+                    categories: x,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '个'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 条</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '新闻总数',
+                    data: y1
+                }, {
+                    name: '评论总数',
+                    data: y2
+                }, {
+                    name: '查看总数',
+                    data: y3
+                }]
+            });
+        });
+        
+    }
+    $("#Province").change(function () {
+        getAreas();
+    });
+    function getAreas() {
+        var provinceId = $("#Province").val();
+        $.post("/Statistics/GetAreas", { provinceId: provinceId }, function (data1) {
+            var select = "<option value=-1>请选择市区</option>";
+            var i = 0;
+            var data = data1.data;
+            for (i = 0; i < data.length; i++) {
+                select += "<option value=" + data[i].Id + ">" + data[i].Name + "</option>";
+            }
+            $("#Area").html(select);
+        })
+    }
+    function statistics() {
+
+    }
+
+</script>
+
+

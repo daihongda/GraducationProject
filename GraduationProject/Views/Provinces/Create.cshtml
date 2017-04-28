@@ -1,0 +1,66 @@
+﻿@model DHD.ENTITY.Province
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="box">
+    <div class="table-head form-inline pd10 ">
+        <div class="pull-left">
+            <ol class="breadcrumb bc-3">
+                <li><a href="">主页</a></li>
+                <li><a href="/SchoolNews/Index">新闻管理</a></li>
+                <li class="active">新闻详情</li>
+            </ol>
+        </div>
+        <div class="text-right" style="visibility:hidden">
+            <div class="form-group">
+                <input type="text" class="form-control" id="txtSearch" placeholder="搜索关键字">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="button" id="btnSearch" onclick="search()"><i class="fa fa-search"></i> 搜索</button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="button" id="btnSearch" onclick="window.location = '/Schools/Create'"><i class="fa fa-search"></i> 添加</button>
+            </div>
+            @*<div class="form-group">
+                    <button class="btn btn-default" type="button" id="btnSearch" onclick="catchData()"><i class="fa fa-search"></i> 抓取</button>
+                </div>*@
+        </div>
+    </div>
+    <div class="table-responsive table-main">
+        <div id="tbfilelist_wrapper" class="dataTables_wrapper" role="grid">
+            <div class="row"><div id="tbfilelist_processing" class="dataTables_processing" style="visibility: hidden;"><img src="/Content/assets/images/loader-1.gif"></div></div>
+            <div id="content">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

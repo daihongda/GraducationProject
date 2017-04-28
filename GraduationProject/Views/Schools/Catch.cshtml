@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Catch";
+}
+<script src="/Content/Assests/js/jquery-1.10.2.js"></script>
+<div class="box">
+    <div class="table-head form-inline pd10 ">
+        <div class="pull-left">
+            <ol class="breadcrumb bc-3">
+                <li><a href="">主页</a></li>
+                <li class="active">新闻抓取</li>
+            </ol>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">学校</label>
+            <div class="col-md-7">
+                @Html.DropDownList("SchoolId", null, htmlAttributes: new { @class = "form-control",@id="School"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">新闻分类</label>
+            <div class="col-md-7">
+                <select id="NewType" class="form-control">
+                    <option value="-1">请选择新闻分类</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">新闻地址</label>
+            <div class="col-md-7">
+                <div class="col-md-7" id="url">
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="抓取文章" class="btn btn-default" id="catchNew" />
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="抓取图片" class="btn btn-default" id="catchImg" />
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Content/Assests/js/jquery-1.10.2.js"></script>
+<script>
+    var urlList = new Map();
+    $(function () {
+        getNewType();
+
+    })
+    $("#School").change(function () {
+        getNewType();
+    })
+    $("#School").change(function () {
+        getUrl();
+    })
+    $("#catchNew").click(function () {
+        var schoolId = $("#School").val();
+        var newTypeId = $("#NewType").val();
+        $.post("/Catch/CatchData", { SchoolId: schoolId, NewTypeId: newTypeId }, function (data) {
+            console.log("抓取成功!");
+        })
+    })
+    $("#catchImg").click(function () {
+        var schoolId = $("#School").val();
+        var newTypeId = $("#NewType").val();
+        $.post("/Catch/CatchImg", { SchoolId: schoolId, NewTypeId: newTypeId }, function (data) {
+            console.log("抓取成功!");
+        })
+    })
+    function getUrl() {
+        var id = $("#NewType").val();
+        $("#url").html(urlList[id]);
+    }
+    function getNewType() {
+        var schoolId = $("#School").val();
+        $.get("/Schools/GetNewType?schoolId=" + schoolId, function (data) {
+            urlList = new Array();
+            var select = "";
+            var i = 0;
+            for (i = 0; i < data.length;i++) {
+                select += "<option value=" + data[i].Id + ">" + data[i].Name + "</option>";
+                urlList[data[i].Id] = data[i].Url;
+            }
+            $("#NewType").html(select);
+            getUrl();
+        });
+    }
+</script>

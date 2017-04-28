@@ -1,0 +1,48 @@
+﻿@model GraduationProject.Models.BackLoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/BackEnter.cshtml";
+}
+<div class="login" style="margin-top:100px;">
+    <div class="header">
+        <div class="switch" id="switch">
+            <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
+            <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">快速注册</a>
+            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+        </div>
+    </div>
+    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+        <!--登录-->
+        <div class="web_login" id="web_login">
+            <div class="login-box">
+                <div class="login_form">
+                    @using (Html.BeginForm("LoginValidate", "Manager", new { @class = "loginFomm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary()
+                        <input type="hidden" name="did" value="0" />
+                        <input type="hidden" name="to" value="log" />
+                        <div class="uinArea" id="uinArea">
+                            @Html.LabelFor(m => m.UserName, new { @class = "input-tips" })
+                            <div class="inputOuter" id="uArea">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "inputstyle" })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            
+                        </div>
+                        <div class="pwdArea" id="pwdArea">
+                            @Html.LabelFor(m => m.Password, new { @class = "input-tips" })
+                            <div class="inputOuter" id="pArea">
+                                @Html.TextBoxFor(m => m.Password, new { @class = "inputstyle" ,type="password"})
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                            
+                        </div>
+                        <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="登 录" style="width:150px;" class="button_blue" /></div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!--登录end-->
+    </div>
+</div>

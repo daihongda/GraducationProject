@@ -1,0 +1,11 @@
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\DHD.BLL.dll
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\DHD.BLL.pdb
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\DHD.DAL.dll
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\DHD.ENTITY.dll
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\EntityFramework.dll
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\DHD.DAL.pdb
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\DHD.ENTITY.pdb
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\bin\Debug\EntityFramework.xml
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\obj\Debug\DHD.BLL.csprojResolveAssemblyReference.cache
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\obj\Debug\DHD.BLL.dll
+c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\DHD.BLL\obj\Debug\DHD.BLL.pdb

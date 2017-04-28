@@ -1,0 +1,48 @@
+﻿html,body,.y-wrap{width:100%;height:100%}label{cursor:pointer}input{border:0;outline:0;font:12px/1 'Microsoft YaHei' arial,sans-serif}a,a:visited{color:#406599}a:hover{color:#f85959}.logo-wrap{display:inline-block;position:absolute;top:16px;left:16px;width:110px;height:27px}.logo-wrap>img{width:100%;height:100%}.base-box{position:absolute;top:160px;left:50%;margin-left:-150px;width:300px}.base-box>h2{font-size:24px;line-height:1;margin-bottom:30px;text-align:center}.input-field{position:relative;font-size:16px;margin-bottom:8px;color:#666}.input-field>label{position:absolute;left:12px;top:1px;display:block;height:40px;line-height:40px;text-align:center;z-index:2}.input-field>input{width:282px;font-size:16px;line-height:32px;height:32px;padding:4px 8px;border:1px solid #ddd;z-index:1}.input-field>input:focus{border-color:#2a90d7}.input-field>i{position:absolute;cursor:pointer;top:14px;right:12px;font-size:14px;color:#666}.input-field>i:hover{color:#444}.action-btn{color:#fff;font-size:18px;line-height:42px;width:300px;text-align:center;background-color:#f85959;margin-bottom:40px;cursor:pointer}.action-btn:hover{opacity:.9;filter:alpha(opacity=90)}.error-msg{position:absolute;top:-48px;font-size:14px;line-height:14px;height:14px;color:#666;width:274px;padding:12px;border:1px solid #f85959;background-color:#fff1f1;z-index:10}.error-msg>i{font-size:14px;color:#f85959}.error-msg>.icon-clearicon{color:#666;cursor:pointer}.content{position:relative;width:100%;height:100%;background-color:#eee;background-image:url(/Images/background3.jpg);background-repeat:space;background-position:top center}.slogan-wrap{position:absolute;left:50%;margin-left:-275px;top:10px;width:550px;height:385px}.slogan-wrap>img{width:100%;height:100%}.loginBox{position:absolute;top:230px;left:50%;margin-left:-200px;width:300px;padding:28px 50px 38px;background-color:#fff;background-color:rgba(255,255,255,.9)}.loginBox .login-header{font-size:18px;color:#222;margin-bottom:20px}.loginBox .login-header .item{width:150px;text-align:center}.loginBox .login-header .item>span{position:relative;display:inline-block;width:112px;padding-bottom:6px;cursor:default}.loginBox .login-header .active{color:#f85959;font-weight:700}.loginBox .login-header .active>span{border-bottom:2px solid #f85959}.baseLogin{position:relative}.baseLogin .phone-code>input{width:170px;padding-right:120px}.baseLogin .phone-code .code-btn{position:absolute;top:0;right:0;color:#406599;cursor:pointer;font-size:16px;width:80px;height:42px;line-height:42px;padding:0 16px;text-align:center}.baseLogin .phone-code .code-btn.active{color:#ddd;font-size:14px;cursor:default}.baseLogin .phone-code .code-btn:before{content:'';position:absolute;left:0;top:4px;height:34px;width:1px;background-color:#ddd}.baseLogin .verification>input{width:170px;padding-right:120px}.baseLogin .verification .captcha-wrap{position:absolute;top:1px;right:1px;width:102px;height:40px}.baseLogin .verification .captcha-wrap .captcha{display:block;width:102px;height:40px;cursor:pointer}.baseLogin .verification .captcha-wrap .tips-bubble{display:none;position:absolute;top:-35px;right:-9px;background-color:#444;width:115px;text-align:center;font-size:13px;color:#fff;line-height:26px;padding:0 2px}.baseLogin .verification .captcha-wrap .tips-bubble::after{content:'';position:absolute;top:22px;width:0;left:51px;height:0;border:10px solid transparent;border-top-color:#444}.baseLogin .verification .captcha-wrap:hover .tips-bubble{display:block}.baseLogin .action{font-size:14px;color:#222;margin-top:4px;margin-bottom:24px}.baseLogin .action .remember{margin-right:4px}.baseLogin .action>input,.baseLogin .action>label{vertical-align:middle}.baseLogin .action .forget{float:right;color:#406599}.baseLogin .action .msg{font-size:12px;color:#f85959}.baseLogin .sns-login{font-size:0;text-align:center}.baseLogin .sns-login .sns{position:relative;display:inline-block;width:40px;height:40px;margin-left:24px;cursor:pointer;background-repeat:no-repeat}.baseLogin .sns-login .sns:first-child{margin-left:0}.baseLogin .sns-login .sns:hover{opacity:.8}.baseLogin .sns-login .sns>span{position:absolute;left:8px;bottom:-20px;font-size:12px;width:24px;line-height:1;color:#505050}.baseLogin .sns-login .phone-login{background-image:url(//s3a.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/icon_phone_pc_eb2b87d.png);background-image:url(//s3.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/svg/icon_phone_pc_9326f65.svg),none}.baseLogin .sns-login .mail-login{background-image:url(//s3.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/icon_mail_pc_e58e4d1.png);background-image:url(//s3b.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/svg/icon_mail_pc_d9c3ec7.svg),none}.baseLogin .sns-login .weixin-login{background-image:url(//s3.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/icon_weixin_pc_1d58bef.png);background-image:url(//s3b.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/svg/icon_weixin_pc_6251f7a.svg),none}.baseLogin .sns-login .qq-login{background-image:url(//s3.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/icon_qq_pc_de846d6.png);background-image:url(//s3a.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/svg/icon_qq_pc_5baa07b.svg),none}.baseLogin .sns-login .weibo-login{background-image:url(//s3a.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/icon_weibo_pc_bde1e60.png);background-image:url(//s3a.pstatp.com/toutiao/resource/ntoutiao_web/static/image/login/svg/icon_weibo_pc_e5a8191.svg),none}
+.header {
+    height: 50px;
+    border-bottom: 1px solid #e2e2e2;
+    position: relative;
+    font-family: "Microsoft Yahei";
+}
+.header .switch {
+    left: 70px;
+}
+.header .switch {
+    height: 45px;
+    position: absolute;
+    left: 60px;
+    bottom: 0;
+    font-size: 16px;
+}
+.header .switch #switch_qlogin {
+    margin-right: 85px;
+}
+.header .switch .switch_btn_focus {
+    color: #333;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    outline: none;
+}
+a {
+    text-decoration: none;
+}
+.header .switch .switch_btn {
+    color: #999;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    outline: none;
+}
+element.style {
+    position: absolute;
+    width: 64px;
+    left: 0px;
+}
+#switch_bottom {
+    position: absolute;
+    bottom: -1px;
+    _bottom: -2px;
+    border-bottom: 2px solid #848484;
+}
