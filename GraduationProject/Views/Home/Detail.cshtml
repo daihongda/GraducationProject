@@ -74,6 +74,9 @@
                     <p>${Content}</p>
                     <div class="c-footer-action">
                         <span class="c-reply" style=" font-size: 14px;">回复</span>
+                        {{if UserId == @GeneralCommon.getCurrentUserId()}}
+                        <span class="c-reply" style=" font-size: 14px;" onclick="        DeleteComment('${Id}')">删除</span>
+                        {{/if}}
                         <span class="pull-right c-report" title="赞" onclick="ThumbUpComment('${Id}')"><span id="thumbUp${Id}">${ThumbUp}&nbsp;</span><i class="fa fa-thumbs-o-up"></i></span>
                     </div>
                     <div class="J_input_0"></div>
@@ -109,6 +112,13 @@
             console.log(111);
             if(data.code == "10001"){
                 $("#thumbUp"+data.data.Id).text(data.data.ThumbUp);
+            }
+        })
+    }
+    function DeleteComment(id){
+        $.post("/Home/DeleteComment",{commentId:id},function(data){
+            if(data.code == "10001"){
+                getCommentList();
             }
         })
     }

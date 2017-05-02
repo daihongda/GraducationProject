@@ -52,8 +52,8 @@ namespace DHD.DAL
             if (searchContent == "")
             {
                 string sql = string.Format("Select * from dbo.Messages order by {0} {1}", column, order);
-                var newTypes = db.Database.SqlQuery<Message>(sql).ToList();
-                return newTypes;
+                var messgaes = db.Database.SqlQuery<Message>(sql).ToList();
+                return messgaes;
             }
             else
             {
@@ -61,8 +61,8 @@ namespace DHD.DAL
                 var content = searchContent.Split('=')[1];
                 string sql = string.Format("Select * from dbo.Messages where {0} like '%{1}%' order by {2} {3}", title, content, column, order);
                 //string sql = string.Format("Select * from dbo.Schools where {0} like %{1}%", title, content);
-                var newTypes = db.Database.SqlQuery<Message>(sql).ToList();
-                return newTypes;
+                var messgaes = db.Database.SqlQuery<Message>(sql).ToList();
+                return messgaes;
             }
         }
         public List<Message> GetAll()

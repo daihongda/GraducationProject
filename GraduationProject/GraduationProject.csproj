@@ -126,6 +126,8 @@
     <Content Include="Content\Css\navigator.css" />
     <Content Include="Content\Css\prettyPhoto.css" />
     <Content Include="Content\Css\range-slider.css" />
+    <Content Include="Content\Css\RequestCommon.css" />
+    <Content Include="Content\Css\RequestList.css" />
     <Content Include="Content\Css\User\common.css" />
     <Content Include="Content\Css\User\register.css" />
     <Content Include="Content\Css\responsive.css" />

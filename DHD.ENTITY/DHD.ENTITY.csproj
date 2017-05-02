@@ -168,6 +168,14 @@
     <Compile Include="Migrations\201704270846211_update26.Designer.cs">
       <DependentUpon>201704270846211_update26.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705020305511_update261.cs" />
+    <Compile Include="Migrations\201705020305511_update261.Designer.cs">
+      <DependentUpon>201705020305511_update261.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705020955133_update27.cs" />
+    <Compile Include="Migrations\201705020955133_update27.Designer.cs">
+      <DependentUpon>201705020955133_update27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewType.cs" />
     <Compile Include="NewTypeUrl.cs" />
@@ -266,6 +274,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704270846211_update26.resx">
       <DependentUpon>201704270846211_update26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705020305511_update261.resx">
+      <DependentUpon>201705020305511_update261.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705020955133_update27.resx">
+      <DependentUpon>201705020955133_update27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

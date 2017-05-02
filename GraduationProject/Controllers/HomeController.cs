@@ -163,7 +163,7 @@ namespace GraduationProject.Controllers
         #region 评论相关接口
         public JsonResult GetComments(int schoolNewId,int page=1,int perpage=5)
         {
-            var comments = db.Comments.Where(d => d.SchoolNewId == schoolNewId).OrderBy(d=>d.PublishTime).Skip((page-1)*perpage).Take(perpage);
+            var comments = db.Comments.Where(d => d.SchoolNewId == schoolNewId & d.IsDelete == 0).OrderByDescending(d=>d.PublishTime).Skip((page-1)*perpage).Take(perpage);
             List<CommentModel> commentmodels = new List<CommentModel>();
             foreach(var comment in comments){
                 commentmodels.Add(CommentModel.Transfer(comment));
@@ -215,6 +215,18 @@ namespace GraduationProject.Controllers
             {
                 return Json(new JsonModel("发生异常:"+ex.ToString()));
             }
+        }
+        public JsonResult DeleteComment(int commentId)
+        {
+            var comment = db.Comments.Find(commentId);
+            if (comment != null)
+            {
+                comment.IsDelete = 1;
+                db.SaveChanges();
+                return Json(new JsonModel("删除成功", null));
+            }
+            return Json(new JsonModel("删除失败"));
+            
         }
         #endregion
         public ActionResult Register()

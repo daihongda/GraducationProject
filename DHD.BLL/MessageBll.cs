@@ -48,6 +48,11 @@ namespace DHD.BLL
             var Provinces = dal.GetByPage(orderBy, orderType, searchContent).Skip((pageIndex - 1) * perPage).Take(perPage);
             return Provinces.ToList<Message>();
         }
+        public List<Message> SearchMessages(string searchContent, int pageIndex = 1, int perPage = 10, int orderBy = 0, int orderType = 0)
+        {
+            var Provinces = dal.GetByPage(orderBy, orderType, searchContent).Skip((pageIndex - 1) * perPage).Take(perPage);
+            return Provinces.ToList<Message>();
+        }
         public int AddRange(IEnumerable<Message> Messages)
         {
             return dal.AddRange(Messages);

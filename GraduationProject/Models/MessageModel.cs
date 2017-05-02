@@ -12,8 +12,12 @@ namespace GraduationProject.Models
         [Required]
         public string Title { get; set; }
         [Required]
-        [MinLength(50)]
+        [MinLength(10)]
+        [MaxLength(200)]
         public string Content { get; set; }
         public int From { get; set; }
+        public string FromName { get; set; }
+        public string CreatedTime { get; set; }
+        public int Id { get; set; }
     }
 }

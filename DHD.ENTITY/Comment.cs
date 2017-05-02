@@ -29,6 +29,10 @@ namespace DHD.ENTITY
         /// </summary>
         public string Author { get; set; }
         /// <summary>
+        /// 评论作者的id
+        /// </summary>
+        public int UserId { get; set; }
+        /// <summary>
         /// 高校新闻ID
         /// </summary>
         public int SchoolNewId { get; set; }

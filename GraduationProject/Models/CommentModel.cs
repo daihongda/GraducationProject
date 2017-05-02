@@ -27,6 +27,7 @@ namespace GraduationProject.Models
         /// 评论作者
         /// </summary>
         public string Author { get; set; }
+        public int UserId { get; set; }
         /// <summary>
         /// 高校新闻ID
         /// </summary>
@@ -53,6 +54,7 @@ namespace GraduationProject.Models
             model.Content = comment.Content;
             model.ThumbUp = comment.ThumbUp;
             model.Author = comment.Author;
+            model.UserId = comment.UserId;
             return model;
         }
         public static string publishDateTransfer(DateTime datetime){
