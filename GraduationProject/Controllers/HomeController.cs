@@ -7,6 +7,7 @@ using DHD.BLL;
 using GraduationProject.Models;
 using DHD.ENTITY;
 using GraduationProject.Common;
+using GraduationProject.Filters;
 namespace GraduationProject.Controllers
 {
     public class HomeController : Controller
@@ -40,6 +41,34 @@ namespace GraduationProject.Controllers
 
             return View(SchoolNewModel.Transfer1(schoolNew));
         }
+        [CheckedLogin]
+        public ActionResult UserSetting()
+        {
+            var userId = GeneralCommon.getCurrentUserId();
+            var user = db.Users.Find(userId);
+            if (user != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        #region 用户相关接口
+        public JsonResult SettingPassword(string password,string confirmPassword)
+        {
+            var id = GeneralCommon.getCurrentUserId();
+            var user = db.Users.Find(id);
+            if (password == confirmPassword&&user!=null)
+            {
+                user.Password = password;
+                db.SaveChanges();
+                return Json(new JsonModel("", null));
+            }
+            return Json(new JsonModel("当前用户登录异常"));
+        }
+        #endregion
         #region 新闻相关接口
         public JsonResult LoadSchoolListHot()
         {

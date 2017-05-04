@@ -35,3 +35,10 @@ c:\users\mikedai\documents\visual studio 2013\Projects\GraduationProject\Graduat
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\HtmlAgilityPack.dll
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\HtmlAgilityPack.pdb
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\HtmlAgilityPack.xml
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\Antlr3.Runtime.dll
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\Newtonsoft.Json.dll
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\System.Web.Optimization.dll
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\WebGrease.dll
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\Antlr3.Runtime.pdb
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\Newtonsoft.Json.xml
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\GraduationProject\bin\System.Web.Optimization.xml

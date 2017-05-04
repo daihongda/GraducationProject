@@ -1,0 +1,153 @@
+﻿@model GraduationProject.Models.PagerModel
+@{
+    Layout = "~/Views/Shared/IndexLayout.cshtml";
+}
+<!--kode Wrapper Start-->
+<div class="kode_wrapper">
+    <!--Inner Banner Start-->
+    <div class="innner_banner">
+        <div class="container">
+            <h3>综合新闻</h3>
+            <ul class="breadcrumb">
+                <li><a href="#">主页</a></li>
+                <li><a href="#">杭州电子科技大学</a></li>
+                <li class="active"><span>综合新闻</span></li>
+            </ul>
+        </div>
+    </div>
+    <!--Inner Banner End-->
+    <div class="kode_content_wrap">
+        <section class="kf_blog2">
+            <div class="container">
+                <!--Featured 3 Slider Start-->
+                <div class="kf_featured_wrap3">
+                    <div class="row" id="content">
+
+                    </div>
+                </div>
+                <!--Featured 3 Slider End-->
+                <!--Kf Pagination Start-->
+                <div class="kode-pagination text-center" id="pageList">
+
+                </div>
+                <!--Kf Pagination End-->
+            </div>
+        </section>
+    </div>
+    <!--Main Content Wrap End-->
+</div>
+<link href="~/Content/Css/alertDiv.css"  rel="stylesheet"/>
+<!--kode Wrapper End-->
+<!--Jquery Library-->
+<script src="~/Content/Js/jquery.js"></script>
+<!--Bootstrap core JavaScript-->
+<script src="~/Content/Js/bootstrap.js"></script>
+<!--Slick Slider JavaScript-->
+<script src="~/Content/Js/slick.min.js"></script>
+<!--Pretty Photo JavaScript-->
+<script src="~/Content/Js/jquery.prettyPhoto.js"></script>
+<!--Dl Menu Script-->
+<script src="~/Content/Js/dl-menu/modernizr.custom.js"></script>
+<script src="~/Content/Js/dl-menu/jquery.dlmenu.js"></script>
+<!--Custom JavaScript-->
+<script src="~/Content/Js/custom.js"></script>
+<script src="~/Scripts/jquery.tmpl.min.js"></script>
+<script src="~/Content/Js/alertDiv.js"></script>
+<script id="pager" type="text/html">
+    {{if pageIndex == currentPage}}
+<span class="page-numbers current">${pageIndex}</span>
+{{else (pageIndex-currentPage<=3 && pageIndex-currentPage>=-3)||(currentPage<=3&&pageIndex-currentPage<=7-currentPage)||(currentPage>=pageCount-2 && pageIndex-currentPage>=currentPage-pageCount-6)}}
+<a class="page-numbers" href="#" onclick="getSchoolNew('${pageIndex}')"> ${pageIndex}</a>
+{{else (currentPage<=3 && pageIndex-currentPage == 8-currentPage)||(currentPage>3&&currentPage<pageCount-2&&pageIndex-currentPage==4)}}
+    <a class="page-numbers" href="#" onclick="getSchoolNew('${pageIndex}')"> ></a>
+    <a class="page-numbers" href="#" onclick="getSchoolNew('${pageCount}')"> >></a>
+{{else (currentPage>=pageCount-2 && pageIndex-currentPage==currentPage-pageCount-7)||(currentPage>3&&currentPage<pageCount-2&&pageIndex-currentPage==-4)}}
+    <a class="page-numbers" href="#" onclick="getSchoolNew('1')"> <<</a>
+    <a class="page-numbers" href="#" onclick="getSchoolNew('${pageIndex}')"> <</a>
+
+{{/if}}
+</script>
+<script id="SchoolNew" type="text/html">
+    <div class="col-md-6 col-sm-6" id="schoolNew${Id}">
+        <!--Featured 3 thumb Start-->
+        <div class="kf_featured_thumb">
+            <figure>
+                <img src="${Images}" alt="" style="width:553px;height:429px;">
+            </figure>
+            <div class="text_wrper">
+                <div class="text">
+                    <a href="/Home/Detail?schoolNewId=${Id}"><h6 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${Title}</h6></a>
+                    <h2>${Author}</h2>
+                    <span>${PublishTime}</span>
+                    <p style=" overflow:hidden;text-overflow:ellipsis;height:150px;">{{html Content}}</p>
+                </div>
+                <div class="thumb_footer">
+
+                    <ul class="blog_meta">
+                        <li>
+                            <span><i class="fa fa-eye"></i>${ViewNumber}</span>
+                        </li>
+                        <li>
+                            <span class="heart" ><i class="fa fa-heart-o" onclick="thumbUp('${Id}')" title="点赞"></i><b id="thumbUp${Id}" style="font-size:inherit">${ThumbUp}</b></span>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-comment-o"></i>09</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Featured 3 thumb End-->
+    </div>
+</script>
+<script>
+    getSchoolNew();
+    function getSchoolNew(pageIndex,orderBy, orderType) {
+        if (orderBy == null || orderBy == undefined) {
+            orderBy = 0;
+        }
+        if (orderType == null || orderType == undefined) {
+            orderType = 0;
+        }
+        if (pageIndex == null || pageIndex == undefined) {
+            pageIndex = @Model.CurrentPage;
+        }
+        var schoolId = @Model.SchoolId;
+
+        //$("#SchoolNew").empty();
+        //$("#pager").empty();
+        $.post("/Home/LoadSchoolNews", { pageIndex: pageIndex, perpage: 10, orderBy: orderBy, orderType: orderType, schoolId: schoolId }, function (data) {
+
+            $("#SchoolNew").tmpl(data.data.Data).prependTo($("#content").empty());
+            var pageCount = data.data.PageCount;
+            var currentPage = data.data.CurrentPage;
+            var pageList = [];
+            for (var i = 1; i <= pageCount; i++) {
+                var pager = { pageIndex: i, currentPage: currentPage ,pageCount:pageCount};
+                pageList.push(pager);
+            }
+           
+            $("#pager").tmpl(pageList).appendTo($("#pageList").empty());
+
+        })
+    }
+    function thumbUp(id) {
+        $.post("/Home/ThumbUpSchoolNew", { schoolNewId: id }, function (data) {
+            if (data.code == "10001") { 
+                console.log(111);
+                
+                $("#thumbUp"+id).text(data.data.ThumbUp);
+               
+                
+            }
+            else{
+                alertMsg(data.msg,1);
+            }
+        })
+    }
+    function reloadSchoolNew(id){
+        $("#schoolNew"+id).html($("#SchoolNew").tmpl(data.data).html());
+    }
+</script>
+
+

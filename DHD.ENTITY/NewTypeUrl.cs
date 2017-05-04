@@ -31,5 +31,6 @@ namespace DHD.ENTITY
         /// 是否删除
         /// </summary>
         public int IsDelete { get; set; }
+        public int LastCatchId { get; set; }
     }
 }

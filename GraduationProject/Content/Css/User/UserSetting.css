@@ -1,0 +1,285 @@
+﻿.container1 {
+    width: 1060px;
+    margin: 0 auto;
+    min-height: 600px;
+}
+.container .index-channel {
+    width: 90px;
+    height: 600px;
+    padding-right: 38px;
+    background-color: #fff;
+}
+.channel-fixed {
+    position: fixed;
+    top: 0;
+    z-index: 20;
+}
+.channel-item:hover, .channel-item.active {
+    background-color: #f1f2f3;
+}
+.channel-item {
+    margin-bottom: 10px;
+    width: 90px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 18px;
+    text-align: center;
+}
+.channel-item a {
+    color: #444;
+}
+.channel-item i {
+    color: #444;
+    font-size: 26px;
+    top: 3px;
+}
+.y-icon.icon-recommandchannel:before {
+    content: "\e631";
+    color: #ff6464;
+}
+.header-operation {
+    cursor: pointer;
+    width: auto;
+    padding: 0 20px;
+    height: 100%;
+    float: right;
+    line-height: 30px;
+    height: 30px;
+    margin-top: 10px;
+    position: relative;
+}
+.header-operation a {
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+.header-operation ul {
+    list-style: none;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 5px;
+    width: 100px;
+    border-color: #b8b8b8;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,.25);
+    border-style: solid;
+    border-width: 1px;
+}
+.header-operation ul li {
+    line-height: 28px !important;
+    margin: auto;
+    width: 90%;
+    height: 28px;
+    text-align: center;
+    color: black;
+}
+.setting{
+    padding:10px;
+    border:1px solid gray;
+    display:none;
+    min-height:400px;
+    font-family:'Microsoft YaHei';
+}
+#settingContainer .cavatar {
+    position: relative;
+    float: left;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #E8E8E8;
+    border-radius: 50%;
+    overflow: hidden;
+    background: url(../Images/default40_c78f50e.png?__sprite) no-repeat center;
+}
+#settingContainer .cavatar img {
+    border-radius: 100%;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: .3s opacity ease-in-out;
+    transition: .3s opacity ease-in-out;
+}
+#settingContainer .error-message {
+    color: red;
+}
+
+/*NewsContent的样式*/
+.index-content {
+    width: 600px;
+}
+.feedBox .commonFeed {
+    position: relative;
+}
+.feedBox .msgAlert-place {
+    width: 600px;
+}
+.msgAlert {
+    width: 600px;
+    line-height: 32px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #60a3f5;
+    background-color: rgba(96,163,245,.85);
+    z-index: 20;
+    -webkit-transition-property: height;
+    transition-property: height;
+    -webkit-transition-delay: 0;
+    transition-delay: 0;
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
+}
+.msgAlert span {
+    cursor: pointer;
+    min-width: 500px;
+    display: inline-block;
+}
+.msgAlert i {
+    position: absolute;
+    top: 9px;
+    right: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 10;
+}
+.feedBox .msgAlert-hidden {
+    height: 0;
+}
+.feedBox .commonFeed .item {
+    position: relative;
+}
+.feedBox .commonFeed .item:first-child .item-inner {
+    padding-top: 0;
+}
+.feedBox .commonFeed .item-inner {
+    position: relative;
+    padding: 16px 0;
+    border-bottom: 1px solid #f5f6f7;
+}
+.feedBox .commonFeed .lbox {
+    position: relative;
+}
+.y-left.lbox {
+    position: relative;
+    padding: 16px 0;
+    border-bottom: 1px solid #f5f6f7;
+}
+.feedBox .commonFeed .lbox .img-wrap {
+    display: block;
+    width: 126px;
+    height: 82px;
+    border: 1px solid #e8e8e8;
+    background: #e8e8e8;
+    overflow: hidden;
+}
+.feedBox .commonFeed .img-wrap {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.feedBox .commonFeed .lbox .img-wrap>img {
+    width: 100%;
+    height: 100%;
+}
+.feedBox .commonFeed .img-wrap img {
+    width: 100%;
+    height: 99%;
+    -webkit-transition: all .5s ease-out .1s;
+    transition: all .5s ease-out .1s;
+}
+.feedBox .commonFeed .rbox {
+    position: relative;
+    height: 84px;
+    font-size: 0;
+    overflow: hidden;
+    padding-left: 16px;
+}
+.y-box:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+}
+.feedBox .commonFeed .normal {
+    position: relative;
+    overflow: hidden;
+}
+.feedBox .commonFeed .title-box {
+    display: block;
+    font-size: 18px;
+    color: #000042;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+.feedBox .commonFeed .link:visited {
+    color: #999;
+}
+.feedBox .commonFeed .title-box a {
+    color: #222;
+}
+.feedBox .commonFeed .link {
+    color: #4f5157;
+}
+.feedBox .commonFeed .img-list {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.y-box {
+    display: block;
+}
+.feedBox .commonFeed .img-list .img-wrap:first-child {
+    margin-left: 0;
+}
+.feedBox .commonFeed .img-list .img-wrap {
+    width: 194px;
+    height: 108px;
+    float: left;
+    margin-left: 6px;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    overflow: hidden;
+}
+.feedBox .commonFeed .img-wrap {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.feedBox .commonFeed .img-list .img-wrap img {
+    width: 100%;
+    height: 100%;
+}
+.feedBox .commonFeed .img-wrap img {
+    width: 100%;
+    height: 99%;
+    -webkit-transition: all .5s ease-out .1s;
+    transition: all .5s ease-out .1s;
+}
+.feedBox .commonFeed .img-list .img-num {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 0 6px;
+    height: 20px;
+    background: #000;
+    background: rgba(0,0,0,.7);
+    border-radius: 10px;
+    color: #fafafa;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+}
+.y-left{
+    float:left;
+}

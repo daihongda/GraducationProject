@@ -1,0 +1,190 @@
+﻿@model DHD.ENTITY.User
+@{
+    ViewBag.Title = "UserSetting";
+    Layout = "~/Views/Shared/IndexLayout.cshtml";
+}
+<script>
+    var formList = ["form1", "form2", "form3", "form4"];
+    var itemList = ["item1", "item2", "item3", "item4"];
+    function jumpTo(id) {
+
+        for(var i=0;i<formList.length;i++)
+        {
+            var form = document.getElementById("form"+(i+1));
+            var item = document.getElementById("item"+(i+1));
+            if(id == i+1)
+            {
+                form.style.display = "block";
+                item.className = "channel-item active";
+            }
+            else {
+                form.style.display = "none";
+                item.className = "channel-item";
+            }
+        }
+    }
+    function settingPassword() {
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        console.log(newPassword+"  "+confirmPassword);
+        if(newPassword == confirmPassword)
+        {
+            document.getElementById("passwordForm").submit();
+        }
+        else
+        {
+            document.getElementById("errorMessage").innerText = "两次密码输入不一致";
+        }
+    }
+</script>
+<link href="~/Content/Css/User/UserSetting.css" rel="stylesheet"/>
+<div class="container1">
+    <div class="y-left index-channel">
+        <div riot-tag="channel">
+            <div ga_event="left-channel-click" class="channel ">
+                <ul>
+                    <li class="channel-item active" id="item1">
+                        <a href="#" onclick="jumpTo(1)">
+                            <span>上传头像</span>
+                        </a>
+                    </li>
+                    <li class="channel-item " id="item2">
+                        <a href="#" onclick="jumpTo(2)">
+                            <span>查看信息</span>
+                        </a>
+                    </li>
+                    <li class="channel-item" id="item3">
+                        <a href="#" onclick="jumpTo(3)">
+                            <span>修改信息</span>
+                        </a>
+                    </li>
+                    <li class="channel-item" id="item4">
+                        <a href="#" onclick="jumpTo(4)">
+                            <span>修改密码</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div riot-tag="nchannel"></div>
+    </div>
+    <div id="content" class="y-left">
+        <div id="mid">
+            <div class="index-content">
+                <div class="feedBox">
+                    <div class="commonFeed">
+                        <div id="msgAlertPlace" class="msgAlert-place">
+                            <div id="form1" class="setting" style="display:block">
+                                <form action="/Articles/settingImage">
+                                    <div class="form-group">
+                                        <h2 class="xs2">设置我的新头像</h2>
+                                        <p>请选择一个新照片进行上传编辑。<br>头像保存后，您可能需要刷新一下本页面(按F5键)，才能查看最新的头像效果 </p>
+                                        <div class="clearfix" id="settingContainer">
+                                            @Html.HiddenFor(model => model.Id)
+                                            <input type="file" name="ImageUrl" id="image" accept="image/*" onchange="preImg(this.id, 'imgPre');" />
+                                            <div class="cavatar">
+                                                <a href="/user/3244761733/" target="_blank" rel="nofollow">
+                                                    <img id="imgPre" style="opacity: 1;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <button type="submit" name="profilesubmitbtn" id="profilesubmitbtn" value="true" class="pn pnc"><strong>保存</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="form2" class="setting">
+                                <div class="form-horizontal">
+                                    @Html.HiddenFor(model => model.UserName)
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">用户名</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">昵称</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">邮箱</label>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="编辑" class="btn btn-default" onclick="jumpTo(3)" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="form3" class="setting">
+                                <form>
+                                    <div class="form-horizontal">
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">昵称</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">邮箱</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="保存" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="form4" class="setting">
+                                <form id="passwordForm" action="/Articles/settingPassword">
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(model => model.Id)
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">新密码</label>
+                                            <div class="col-md-10">
+                                                <input name="newPassword" id="newPassword" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">确认密码</label>
+                                            <div class="col-md-10">
+                                                <input name="confirmPassword" id="confirmPassword" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="error-message">
+                                            <div class="col-md-offset-2 col-md-10" id="errorMessage" style="color:red;">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <a onclick="settingPassword()" class="btn btn-default">修改密码</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+

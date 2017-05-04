@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Home</title>
-    <!-- Bootstrap core ~/Content/Css -->
+   
+    @*<!-- Bootstrap core ~/Content/Css -->
     <link href="~/Content/Css/bootstrap.css" rel="stylesheet">
     <!-- 菜单栏 ~/Content/Css -->
     <link href="~/Content/Js/dl-menu/component.css" rel="stylesheet">
@@ -28,8 +29,9 @@
     <!-- 颜色 ~/Content/Css -->
     <link href="~/Content/Css/color.css" rel="stylesheet">
     <!-- Responsive ~/Content/Css -->
-    <link href="~/Content/Css/responsive.css" rel="stylesheet">
-
+    <link href="~/Content/Css/responsive.css" rel="stylesheet">*@
+    @Styles.Render("~/Content/CommonCss")
+   
 </head>
 <body>
     <div class="kode_wrapper">
@@ -69,8 +71,8 @@
                             </li>
                         </ul>
                         <ul class="kf_user" style="display:@b">
-                            <li><a href="#"><i class="fa fa-lock"></i>注册</a></li>
-                            <li><a href="#">登录</a></li>
+                            <li><a href="/Home/Register"><i class="fa fa-lock"></i>注册</a></li>
+                            <li><a href="/Home/Login">登录</a></li>
                         </ul>
                         <a href="#" data-toggle="modal" data-target="#search" class="kode_search"><i class="fa fa-search"></i></a>
                     </div>
@@ -165,5 +167,6 @@
     <script src="~/Content/Js/jquery.prettyPhoto.js"></script>
     <!--Custom JavaScript-->
     <script src="~/Scripts/jquery.tmpl.min.js"></script>
+
 </body>
 </html>

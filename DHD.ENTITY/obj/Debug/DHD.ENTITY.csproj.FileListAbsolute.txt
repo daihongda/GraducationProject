@@ -35,7 +35,8 @@ C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENT
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update20.resources
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update22.resources
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update23.resources
-C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.csprojResolveAssemblyReference.cache
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update26.resources
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update261.resources
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update27.resources
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update28.resources
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.Migrations.update29.resources

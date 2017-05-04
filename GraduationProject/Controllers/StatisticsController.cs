@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DHD.ENTITY;
 using GraduationProject.Models;
+using GraduationProject.Common;
 
 namespace GraduationProject.Controllers
 {
@@ -60,6 +61,14 @@ namespace GraduationProject.Controllers
             }
             
             return Json(new JsonModel("",models));
+        }
+        public JsonResult GetSearchContent(string content)
+        {
+            
+            var schools = db.Schools.Where(d => d.Name.StartsWith(content) == true).Select(d => new { 
+                Name = d.Name
+            });
+           return Json(new JsonModel("", schools),JsonRequestBehavior.AllowGet);
         }
         
     }

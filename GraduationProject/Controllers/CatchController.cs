@@ -196,7 +196,7 @@ namespace GraduationProject.Controllers
                     }
                     //Thread.Sleep(3000);
                 }
-                catch
+                catch(Exception ex)
                 {
 
                 }
@@ -206,8 +206,11 @@ namespace GraduationProject.Controllers
         {
             //向指定地址发送请求
             string Url = NewTypeUrl.Url;
-            HttpWebRequest HttpWReq = (HttpWebRequest)WebRequest.Create(Url);
-            HttpWebResponse HttpWResp = (HttpWebResponse)HttpWReq.GetResponse();
+            ///这里是为了确认抓取的地址是否存在
+            //try
+            //{
+                HttpWebRequest HttpWReq = (HttpWebRequest)WebRequest.Create(Url);
+                HttpWebResponse HttpWResp = (HttpWebResponse)HttpWReq.GetResponse();
             StreamReader sr = new StreamReader(HttpWResp.GetResponseStream(), System.Text.Encoding.GetEncoding("UTF-8"));
             HtmlDocument doc = new HtmlDocument();
             string NewsPage;
@@ -234,7 +237,7 @@ namespace GraduationProject.Controllers
                     sr = new StreamReader(HttpWResp.GetResponseStream(), System.Text.Encoding.GetEncoding("UTF-8"));
                     doc.Load(sr);
                 }
-                catch
+                catch(Exception ex)
                 {
                     i--;
                     continue;
@@ -303,13 +306,18 @@ namespace GraduationProject.Controllers
                             db.SchoolNews.Add(schoolnew);
                         }
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         continue;
                     }
                 }
             }
             db.SaveChanges();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return;
+            //}
         }
         public  bool validate(string str, int port)
         {
@@ -351,7 +359,12 @@ namespace GraduationProject.Controllers
             listPath = "/html/body/div[2]/div[2]/table/tr";
             ipPath = "//tr/td[1]";
             portPath = "//tr/td[2]";
-            List<IpNode> ips = printIp(Url, listPath, ipPath, portPath);
+            //这个验证太耗时间了，得想个办法搞定
+            //List<IpNode> ips = printIp(Url, listPath, ipPath, portPath);
+            List<IpNode> ips = new List<IpNode>();
+            ips.Add(new IpNode("58.49.109.166", 80));
+            ips.Add(new IpNode("121.193.143.249", 80));
+            
             //ips.AddRange(printIp(Url, listPath, ipPath, portPath));
 
             Url = "http://www.ip3366.net/free/?stype=1";

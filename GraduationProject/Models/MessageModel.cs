@@ -19,5 +19,6 @@ namespace GraduationProject.Models
         public string FromName { get; set; }
         public string CreatedTime { get; set; }
         public int Id { get; set; }
+        public int HavaExamined { get; set; }
     }
 }

@@ -1,0 +1,118 @@
+﻿@model GraduationProject.Models.SchoolNewModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/IndexLayout.cshtml";
+}
+<link href="~/Content/Css/Detail.css" rel="stylesheet"/>
+<div class="index-middle" id="J_content" style="margin:0px auto;width:800px">
+    <div id="article-main">
+
+
+        <h1 class="article-title">@Model.Title</h1>
+
+        <div class="articleInfo">
+
+            <span class="original"></span>
+
+
+            <span class="src">
+
+                @Model.Author
+
+            </span>
+
+            <span class="time">@Model.PublishTime</span>
+        </div>
+
+        <div class="article-content">
+            <div>
+                @Html.Raw(@Model.Content)
+        </div>
+    </div>
+
+
+    <div riot-tag="actionBox" class="actionBox"><div class="repin "> <i class="y-icon icon-favorite "></i><span>收藏</span> </div> <a href="javascript:;" class="areport"> <i class="y-icon icon-report"></i><span>举报</span> </a> <div id="J_articleReport"></div></div>
+</div>
+    <a id="comment_area" href="#" style="display: inline-block;margin-bottom: 20px;"></a><!--评论锚点-->
+    <div riot-tag="comment" id="comment">
+        <div class="c-header"> <em id="commentNumber">@Model.CommentNumber&nbsp;</em>条评论 </div>
+        <div riot-tag="inputBox" ismain="true" avatar="" group_id="6399979741894787329" item_id="6399985517907149313" style="margin-bottom:20px;">
+            <div class="inputBox">
+                <div class="y-box">
+                    <div class="avatar-wrap avatar-wrap-center">  </div>
+                    <div class="input-wrap  ">
+                        <div class="c-textarea" ga_event="click_input_comment">
+                            <textarea name="inputText" placeholder="写下您的评论..." id="content"></textarea>
+                        </div> <div class="c-action">
+                            <div class="c-submit" onclick="publishComment()">评论</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul id="commentList">
+            <li class="c-item">
+                <div class="c-content" style="text-align:center;">
+                    暂无任何评论
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!--Main Content Wrap End-->
+<!--kode Wrapper End-->
+<!--Jquery Library-->
+<script src="~/Content/Js/jquery.js"></script>
+<!--Bootstrap core JavaScript-->
+<script src="~/Content/Js/bootstrap.js"></script>
+<script src="~/Scripts/jquery.tmpl.min.js"></script>
+<script id="commenttmpl" type="text/html">
+    <li class="c-item">
+                <a target="_blank" class="avatar-wrap" href="/c/user/3007557983/"><img alt="" src="http://p3.pstatp.com/thumb/469/4402898107"> </a>
+                <div class="c-content">
+                    <div class="c-user-info"> <a class="c-user-name" target="_blank" href="/c/user/3007557983/">${Author}</a> <span class="c-create-time">${PublishTime}</span> </div>
+                    <p>${Content}</p>
+                    <div class="c-footer-action">
+                        <span class="c-reply" style=" font-size: 14px;">回复</span>
+                        <span class="pull-right c-report" title="赞" onclick="ThumbUpComment('${Id}')"><span id="thumbUp${Id}">${ThumbUp}&nbsp;</span><i class="fa fa-thumbs-o-up"></i></span>
+                    </div>
+                    <div class="J_input_0"></div>
+                    <!--riot placeholder-->
+                </div>
+     </li>
+</script>
+<script>
+    function publishComment() {
+        var content = $("#content").val();
+        var author = "dhd";
+        var schoolNewId = @Model.Id;
+        $.post("/Home/PublishComment", {Content:content,Author:author,SchoolNewId:schoolNewId}, function (data) {
+            console.log(data);
+            $("#commenttmpl").tmpl(data.data).appendTo($("#commentList"));
+            $("#commentNumber").text(parseInt($("#commentNumber").text())+1);
+            $("#content").val("");
+        })
+    }
+    getCommentList();
+    function getCommentList() {
+        $.post("/Home/GetComments",{schoolNewId:@Model.Id,page:1,perpage:5},function(data){
+            console.log(data);
+            if(data.data.length>0){
+                $("#commentList").empty();
+                $("#commenttmpl").tmpl(data.data).appendTo($("#commentList"));
+                
+            }
+        })
+    }
+    function ThumbUpComment(id) {
+        $.post("/Home/ThumbUpComment",{commentId:id},function(data){
+            console.log(111);
+            if(data.code == "10001"){
+                $("#thumbUp"+data.data.Id).text(data.data.ThumbUp);
+            }
+        })
+    }
+</script>
+
+
+

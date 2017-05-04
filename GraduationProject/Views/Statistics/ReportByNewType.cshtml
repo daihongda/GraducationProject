@@ -318,17 +318,23 @@
                           searchSuggest.dataDisplay(aData);
                         }
           });      */
-
+        $.post("/Statistics/GetSearchContent", { content: keyword }, function (data) {
+            var data1 = [];
+            for (var i = 0; i < data.data.length; i++) {
+                data1.push(data.data[i].Name);
+            }
+            searchSuggest.dataDisplay(data1);
+        })
         //以下为根据输入返回搜索结果的模拟效果代码,实际数据由后台返回
-        var aData = [];
-        aData.push(keyword + '返回数据1');
-        aData.push(keyword + '返回数据2');
-        aData.push(keyword + '不是有的人天生吃素的');
-        aData.push(keyword + '不是有的人天生吃素的');
-        aData.push(keyword + '2012是真的');
-        aData.push(keyword + '2012是假的');
+        //var aData = [];
+        //aData.push(keyword + '返回数据1');
+        //aData.push(keyword + '返回数据2');
+        //aData.push(keyword + '不是有的人天生吃素的');
+        //aData.push(keyword + '不是有的人天生吃素的');
+        //aData.push(keyword + '2012是真的');
+        //aData.push(keyword + '2012是假的');
         //将返回的数据传递给实现搜索输入框的输入提示js类
-        searchSuggest.dataDisplay(aData);
+        //searchSuggest.dataDisplay(aData);
 
     }
 

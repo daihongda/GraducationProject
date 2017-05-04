@@ -33,8 +33,11 @@ namespace GraduationProject.Common
             if (cookie != null)
             {
                 int userId = int.Parse(cookie.Value);
-
-                return userId;
+                var user = db.Users.Find(userId);
+                if (user != null)
+                    return userId;
+                else
+                    return 0;
             }
             else
             {

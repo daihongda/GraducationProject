@@ -53,6 +53,7 @@ namespace GraduationProject.Controllers
                 item.CreatedTime = message.CreatedTime.ToShortDateString();
                 item.From = message.From;
                 item.FromName = db.Users.Find(message.From) == null ? "dhd" : db.Users.Find(message.From).NickName;
+                item.HavaExamined = message.HaveExamined;
                 messages.Add(item);
             }
             int count = bll.SearchMessages(searchContent).Count();
@@ -68,6 +69,20 @@ namespace GraduationProject.Controllers
                 model.PageCount = count / perPage + 1;
             }
             return Json(new JsonModel("1", model));
+        }
+        public JsonResult ExamineRequest(int id)
+        {
+            var message = db.Messages.Find(id);
+            if (message == null)
+            {
+                return Json(new JsonModel("审核的申请的不存在！"));
+            }
+            else
+            {
+                message.HaveExamined = 1;
+                db.SaveChanges();
+                return Json(new JsonModel("审核成功！", null));
+            }
         }
         public ActionResult RequestList()
         {
