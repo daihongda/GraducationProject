@@ -40,3 +40,4 @@ C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENT
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.csproj.GenerateResource.Cache
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.dll
 C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.pdb
+C:\Users\MikeDai\Documents\Visual Studio 2013\Projects\GraduationProject\DHD.ENTITY\obj\Debug\DHD.ENTITY.csprojResolveAssemblyReference.cache
